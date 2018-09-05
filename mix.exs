@@ -10,7 +10,7 @@ defmodule Encrypt.MixProject do
       deps: deps(),
       escript: escript(),
       name: "encrypt",
-      description: "Command-line encryption engine."
+      description: "Command-line encryption engine.",
       organization: "flatironschool",
       source_url: "https://github.com/flatiron-labs/encrypt",
       homepage_url: "https://github.com/flatiron-labs/encrypt",
