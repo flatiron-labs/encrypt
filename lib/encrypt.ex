@@ -3,16 +3,15 @@ defmodule Encrypt do
   Documentation for Encrypt.
   """
   @aad "AES256GCM"
-  @encryption_key System.get_env("ENCRYPTION_SECRET")
 
   def execute_action([action: "generate_secret"]) do
     :crypto.strong_rand_bytes(16)
     |> :base64.encode
   end
 
-  def execute_action([file: file, action: action]) do
+  def execute_action([file: file, action: action, key: key]) do
     file_contents = File.read!(file)
-    apply(__MODULE__,String.to_atom(action), [file_contents])
+    apply(__MODULE__,String.to_atom(action), [file_contents, key])
     |> write_to_file(file, action)
   end
 
@@ -30,22 +29,20 @@ defmodule Encrypt do
   end
 
 
-  def encrypt(val) do
+  def encrypt(val, key) do
     iv = :crypto.strong_rand_bytes(16)
     {ciphertext, tag} =
-      :crypto.block_encrypt(:aes_gcm, get_key(), iv, {@aad, to_string(val), 16})
+      :crypto.block_encrypt(:aes_gcm, decode_key(key), iv, {@aad, to_string(val), 16})
     iv <> tag <> ciphertext
   end
 
-  def decrypt(ciphertext) do
+  def decrypt(ciphertext, key) do
     ciphertext = :base64.decode(ciphertext)
     <<iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
-    :crypto.block_decrypt(:aes_gcm, get_key(), iv, {@aad, ciphertext, tag})
+    :crypto.block_decrypt(:aes_gcm, decode_key(key), iv, {@aad, ciphertext, tag})
   end
 
-  def get_key do
-    IO.puts "KEY"
-    IO.puts @encryption_key
-    :base64.decode(@encryption_key)
+  def decode_key(key) do
+    :base64.decode(key)
   end
 end

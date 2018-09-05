@@ -1,21 +1,18 @@
 # Encrypt
+A command line encryption engine.
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `encrypt` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:encrypt, "~> 0.1.0"}
-  ]
-end
+1. Generate a secret:
 ```
+./encrypt --action generate_secret
+```
+2. Save your secret
+3. Encrypt a file:
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/encrypt](https://hexdocs.pm/encrypt).
+```
+./encrypt --file ./top_secret.txt --action encrypt --key $ENCRYPTION_SECRET
+```
+4. Decrypt a file
 
+```
+./encrypt --file ./top_secret.txt --action decrypt --key $ENCRYPTION_SECRET
+```

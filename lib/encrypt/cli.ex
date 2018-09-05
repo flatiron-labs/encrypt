@@ -9,15 +9,15 @@ defmodule Encrypt.Cli do
 
 
   def parse_args(args) do
-    case OptionParser.parse(args, switches: [file: :string, action: :string]) do
-      {[file: file, action: action], [], []} -> [file: file, action: action]
+    case OptionParser.parse(args, switches: [file: :string, action: :string, key: :string]) do
+      {[file: file, action: action, key: key], [], []} -> [file: file, action: action, key: key]
       {[action: action], [], []} -> [action: action]
     end
   end
 
-  def output_message([file: file, action: action]) do
+  def output_message([file: file, action: action, key: key]) do
     IO.puts IO.ANSI.green() <> "Starting to #{action}..." <> IO.ANSI.reset
-    [file: file, action: action]
+    [file: file, action: action, key: key]
   end
 
   def output_message([action: action]) do
