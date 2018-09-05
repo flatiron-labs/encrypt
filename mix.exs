@@ -10,12 +10,17 @@ defmodule Encrypt.MixProject do
       deps: deps(),
       escript: escript(),
       name: "encrypt",
+      description: "Command-line encryption engine."
       organization: "flatironschool",
-      lisences: ["MIT License"],
-      links: %{"Github" => "https://github.com/flatiron-labs/encrypt"},
       source_url: "https://github.com/flatiron-labs/encrypt",
-      homepage_url: "https://github.com/flatiron-labs/encrypt"
+      homepage_url: "https://github.com/flatiron-labs/encrypt",
+      package: package()
     ]
+  end
+
+  def package do
+    licenses: ["MIT License"],
+    links: %{"Github" => "https://github.com/flatiron-labs/encrypt"},
   end
 
   # Run "mix help compile.app" to learn about applications.
