@@ -4,6 +4,12 @@ defmodule Encrypt do
   """
   @aad "AES256GCM"
 
+  @doc """
+  execute_action([action: "generate_secret"])
+
+  ## Examples
+      iex>
+  """
   def execute_action([action: "generate_secret"]) do
     :crypto.strong_rand_bytes(16)
     |> :base64.encode
@@ -14,7 +20,6 @@ defmodule Encrypt do
     apply(__MODULE__,String.to_atom(action), [file_contents, key])
     |> write_to_file(file, action)
   end
-
 
   def write_to_file(contents, file, "encrypt") do
     {:ok, file_pid } = File.open(file, [:write])
