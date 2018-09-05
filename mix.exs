@@ -19,8 +19,10 @@ defmodule Encrypt.MixProject do
   end
 
   def package do
-    licenses: ["MIT License"],
-    links: %{"Github" => "https://github.com/flatiron-labs/encrypt"},
+    %{
+      licenses: ["MIT License"],
+      links: %{"Github" => "https://github.com/flatiron-labs/encrypt"},
+    }
   end
 
   # Run "mix help compile.app" to learn about applications.
