@@ -17,7 +17,7 @@ defmodule Encrypt.Cli do
     |> parse_args
     |> output_message
     |> handle_execution
-    IO.puts IO.ANSI.green() <> "done!" <> IO.ANSI.reset
+    IO.puts IO.ANSI.green() <> "🧙 ‍done!" <> IO.ANSI.reset
   end
 
 
@@ -29,17 +29,17 @@ defmodule Encrypt.Cli do
   end
 
   def output_message([file: file, action: action, key: key]) do
-    IO.puts IO.ANSI.green() <> "Starting to #{action}..." <> IO.ANSI.reset
+    IO.puts IO.ANSI.green() <> "Starting to #{action}...✨" <> IO.ANSI.reset
     [file: file, action: action, key: key]
   end
 
   def output_message([action: action]) do
-    IO.puts IO.ANSI.green() <> "Starting to #{action}..." <> IO.ANSI.reset
+    IO.puts IO.ANSI.green() <> "Starting to #{action}...✨" <> IO.ANSI.reset
     [action: action]
   end
 
   def handle_execution([action: "generate_secret"]) do
-    IO.puts IO.ANSI.blue() <> "SECRET:" <> IO.ANSI.blue
+    IO.puts IO.ANSI.blue() <> "🗝️ SECRET: 🗝️" <> IO.ANSI.blue
     IO.puts Encrypt.execute_action([action: "generate_secret"])
   end
 

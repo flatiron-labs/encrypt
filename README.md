@@ -2,7 +2,7 @@
 A command line encryption engine.
 ## Installation
 
-`mix install encrypt`
+`mix escript.install hex encrypt`
 
 ## Usage
 1. Generate a secret:
