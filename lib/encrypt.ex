@@ -4,6 +4,13 @@ defmodule Encrypt do
   """
   @aad "AES256GCM"
 
+  @doc """
+  `execute_action([action: "generate_secret"])`
+  Generates a random base64 encoded secret key.
+
+  `execute_action([file: path_to_file, action: "encrypt/decrypt", key: secret_key])`
+  Encrypts or decrypts and base64 encodes/decodes the given file with the secret key.
+  """
   def execute_action([action: "generate_secret"]) do
     :crypto.strong_rand_bytes(16)
     |> :base64.encode
@@ -14,7 +21,6 @@ defmodule Encrypt do
     apply(__MODULE__,String.to_atom(action), [file_contents, key])
     |> write_to_file(file, action)
   end
-
 
   def write_to_file(contents, file, "encrypt") do
     {:ok, file_pid } = File.open(file, [:write])
@@ -28,7 +34,9 @@ defmodule Encrypt do
     File.close(file_pid)
   end
 
-
+  @doc """
+  encrypts the given string of text with the given secret key
+  """
   def encrypt(val, key) do
     iv = :crypto.strong_rand_bytes(16)
     {ciphertext, tag} =
@@ -36,6 +44,9 @@ defmodule Encrypt do
     iv <> tag <> ciphertext
   end
 
+  @doc """
+  decrypts the given string of text with the given secret key
+  """
   def decrypt(ciphertext, key) do
     ciphertext = :base64.decode(ciphertext)
     <<iv::binary-16, tag::binary-16, ciphertext::binary>> = ciphertext
