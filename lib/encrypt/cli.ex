@@ -1,4 +1,17 @@
 defmodule Encrypt.Cli do
+  @moduledoc """
+  Documentation for Encrypt.Cli.
+  """
+  @doc """
+  Will be called by the escript when you execute from the command line:
+  ```
+  > ~/.mix/encrypt --file path_to_file --action encrypt/decrypt --key secret_key
+  ```
+  Or
+  ```
+  > ~/.mix/encrypt --action generate_secret
+  ```
+  """
   def main(args \\ []) do
     args
     |> parse_args
