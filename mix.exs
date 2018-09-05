@@ -20,8 +20,7 @@ defmodule Encrypt.MixProject do
   def package do
     %{
       licenses: ["MIT License"],
-      links: %{"Github" => "https://github.com/flatiron-labs/encrypt"},
-      organization: "flatironschool"
+      links: %{"Github" => "https://github.com/flatiron-labs/encrypt"}
     }
   end
 
