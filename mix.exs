@@ -11,7 +11,6 @@ defmodule Encrypt.MixProject do
       escript: escript(),
       name: "encrypt",
       description: "Command-line encryption engine.",
-      organization: "flatironschool",
       source_url: "https://github.com/flatiron-labs/encrypt",
       homepage_url: "https://github.com/flatiron-labs/encrypt",
       package: package()
@@ -22,6 +21,7 @@ defmodule Encrypt.MixProject do
     %{
       licenses: ["MIT License"],
       links: %{"Github" => "https://github.com/flatiron-labs/encrypt"},
+      organization: "flatironschool"
     }
   end
 
